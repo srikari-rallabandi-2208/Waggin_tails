@@ -5,16 +5,23 @@ from django import forms
 
 from .models import *
 
-class CustomerForm(ModelForm):
+class OwnerForm(ModelForm):
 	class Meta:
-		model = Customer
+		model = Owner
 		fields = '__all__'
 		exclude = ['user']
 
-class OrderForm(ModelForm):
+class VolunteerForm(ModelForm):
 	class Meta:
-		model = Order
+		model = Volunteer
 		fields = '__all__'
+		# exclude = ['user']
+
+
+# class OrderForm(ModelForm):
+# 	class Meta:
+# 		model = Order
+# 		fields = '__all__'
 
 
 class CreateUserForm(UserCreationForm):
@@ -22,3 +29,8 @@ class CreateUserForm(UserCreationForm):
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
 
+class DogsForm(ModelForm) :
+	class Meta:
+		model = Dogs
+		fields = '__all__'
+		exclude = ['owner']
