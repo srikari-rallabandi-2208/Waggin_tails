@@ -40,7 +40,7 @@ def SignupPM (request):
 			else:
 				user = User.objects.create_user (username = username, email = email, password = password) 
 				user.save();
-				group = Group.objects.get(name='Owner')
+				group = Group.objects.get(name='owner')
 				user.groups.add(group)
 				Owner.objects.create(user=user,name=user.username,)
 				messages.info (request, 'Account created successfully, login now!')
@@ -70,7 +70,7 @@ def SignupV (request):
 			else:
 				user = User.objects.create_user (username = username, email = email, password = password)
 				user.save();
-				group = Group.objects.get(name='Volunteer')
+				group = Group.objects.get(name='volunteer')
 				user.groups.add(group)
 				Volunteer.objects.create(user=user,name=user.username,)
 				messages.info (request, 'Account created successfully, login now!')
