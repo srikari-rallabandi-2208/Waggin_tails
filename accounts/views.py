@@ -25,11 +25,13 @@ def home (request):
     return render (request, 'accounts/1MainPageWT.html')
 
 def SignupPM (request):
+	form = CreateUserForm()
 	if request.method == 'POST':
 		username = request.POST ['username']
 		email = request.POST ['email']
 		password = request.POST ['password']
 		confirm_password = request.POST ['confirm_password']
+		form = CreateUserForm(request.POST)
 		if password == confirm_password:
 			if User.objects.filter (email = email).exists():
 				messages.info (request, 'Email already exists.')
@@ -37,9 +39,9 @@ def SignupPM (request):
 			elif User.objects.filter (username = username).exists():
 				messages.info (request, 'Username already exists.')
 				return redirect ('SignupPM')
-			else:
-				user = User.objects.create_user (username = username, email = email, password = password) 
-				user.save();
+			elif form.is_valid():
+				user = form.save()
+				username = form.cleaned_data.get('username')
 				group = Group.objects.get(name='owner')
 				user.groups.add(group)
 				Owner.objects.create(user=user,name=user.username,)
@@ -50,16 +52,18 @@ def SignupPM (request):
 			messages.info (request, 'Incorrect Password.')
 			return redirect ('SignupPM')
 	else:
-		return render (request, 'accounts/2-1SignupPM.html')
+		form = UserCreationForm()
+	return render (request, 'accounts/2-1SignupPM.html')
 
 
 def SignupV (request):
+	form = CreateUserForm()
 	if request.method == 'POST':
 		username = request.POST ['username']
 		email = request.POST ['email']
 		password = request.POST ['password']
 		confirm_password = request.POST ['confirm_password']
-
+		form = CreateUserForm(request.POST)
 		if password == confirm_password:
 			if User.objects.filter (email = email).exists():
 				messages.info (request, 'Email already exists.')
@@ -68,8 +72,8 @@ def SignupV (request):
 				messages.info (request, 'Username already exists.')
 				return redirect ('SignupV')
 			else:
-				user = User.objects.create_user (username = username, email = email, password = password)
-				user.save();
+				user = form.save()
+				username = form.cleaned_data.get('username')
 				group = Group.objects.get(name='volunteer')
 				user.groups.add(group)
 				Volunteer.objects.create(user=user,name=user.username,)
@@ -79,7 +83,8 @@ def SignupV (request):
 			messages.info (request, 'Incorrect Password')
 			return redirect ('SignupV')
 	else:
-		return render (request, 'accounts/2-2SignupV.html') 
+		form = UserCreationForm()
+	return render (request, 'accounts/2-2SignupV.html') 
 
 
 
