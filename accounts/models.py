@@ -2,12 +2,14 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
+from crm1.settings import USE_I18N
+
 class Owner(models.Model):
     o_user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True,on_delete= models.SET_NULL)
     o_first_name = models.CharField(max_length=200, null=True)
     o_last_name = models.CharField(max_length=200, null=True)
     o_phone = models.IntegerField(max_length=10, null=True)
-    o_email = models.CharField(max_length=200, null=True)
+    o_email = models.EmailField(max_length=200, null=True,unique=True)
     o_address = models.CharField(max_length=500, null = True)
     o_city = models.CharField(max_length=100, null = True)
     o_state = models.CharField(max_length=100, null = True)
@@ -86,7 +88,7 @@ class Volunteer(models.Model):
     v_gender = models.CharField(max_length=20, null = True, choices = Gender)
     v_age = models.IntegerField(max_length=3, null = True)
     v_phone = models.CharField(max_length=200, null=True)
-    v_email = models.CharField(max_length=200, null=True)
+    v_email = models.EmailField(max_length=200, null=True,unique=True)
     v_aadhaar = models.IntegerField(max_length=12, null = True)
     v_address = models.CharField(max_length=500, null = True)
     v_city = models.CharField(max_length=100, null = True)
