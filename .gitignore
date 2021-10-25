@@ -1,3 +1,6 @@
 env/
 accounts/__pycache__
+accounts/management/__pycache__
+accounts/management/commands/__pycache__
 crm1/__pycache__
+backup/env
