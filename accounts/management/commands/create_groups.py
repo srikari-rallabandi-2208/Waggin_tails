@@ -34,8 +34,7 @@ GROUPS = {
 
 USERS = {
     "my_owner_user" : ["owner","sreeku.ralla@gmail.com","Sri1@kam"],
-    "my_volunteer_user" : ["volunteer","sreeku.ralla@gmail.com","Sri1@kam"],
-    "my_admin_user" :  ["Administration","sreeku.ralla@gmail.com","Sri1@kam"],
+    "my_admin_user" :  ["Administration","narayanaa@gmail.com","Sri1@kam"],
     "Admin" : ["Administration","sreeku.ralla@gmail.com","Sri1@kam"],
 }
 

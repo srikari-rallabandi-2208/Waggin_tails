@@ -65,16 +65,12 @@ Time_Preference = (
     ('9p.m. - 10p.m.','9p.m. - 10p.m.'),
 )
 class Owner(models.Model):
-    o_user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True,on_delete= models.SET_NULL)
-    o_first_name = models.CharField(max_length=200, null=True)
-    o_last_name = models.CharField(max_length=200, null=True)
-    o_phone = models.IntegerField(max_length=10, null=True)
-    o_email = models.EmailField(max_length=200, null=True,unique=True)
-    o_address = models.CharField(max_length=500, null = True)
-    o_city = models.CharField(max_length=100, null = True)
-    o_state = models.CharField(max_length=100, null = True)
-    o_postal_code = models.IntegerField(max_length=6, null=True)
-    o_about_me = models.CharField(max_length=1000, null = True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    #profile_pic = models.ImageField(default="profile1.png", null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
     is_owner = models.BooleanField (default = True)
     is_volunteer = models.BooleanField (default=False)
     def __str__(self):
@@ -82,7 +78,7 @@ class Owner(models.Model):
 		
 class Volunteer(models.Model):
     
-    v_user = models.OneToOneField(settings.AUTH_USER_MODEL,null=True, on_delete= models.SET_NULL)
+    v_user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     v_first_name = models.CharField(max_length=200, null=True)
     v_last_name = models.CharField(max_length=200, null=True)
     v_gender = models.CharField(max_length=20, null = True, choices = Gender)
@@ -106,7 +102,7 @@ class Volunteer(models.Model):
 
 
 class Dogs (models.Model):
-    owner = models.OneToOneField(settings.AUTH_USER_MODEL,null=True,on_delete= models.SET_NULL)
+    owner = models.ForeignKey(Owner, null=True, on_delete= models.SET_NULL)
     dog_name = models.CharField(max_length=100, null=True)
     dog_breed = models.CharField(max_length=100, null=True)
     dog_age = models.IntegerField(blank=True, null=True)
