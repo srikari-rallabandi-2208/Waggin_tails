@@ -19,7 +19,7 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 
 # @unauthenticated_user
 def home (request):
-    return render (request, 'accounts/1MainPageWT.html')
+    return render (request, 'accounts/main.html')
 
 @unauthenticated_user
 def registerPage(request):
