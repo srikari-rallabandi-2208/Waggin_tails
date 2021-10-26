@@ -4,6 +4,66 @@ from django.contrib.auth.models import User
 
 from crm1.settings import USE_I18N
 
+Day_Preference = (
+        ('Sunday', 'Sunday'),
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+    ) 
+Gender = (
+    ('MALE', 'MALE'),
+    ('FEMALE', 'FEMALE'),
+    ('OTHER', 'OTHER'),
+    )
+States = (
+    ('Andaman and Nicobar Islands', 'Andaman and Nicobar Islands'),
+    ('Arunachal Pradesh', 'Arunachal Pradesh'),
+    ('Assam', 'Assam'),
+    ('Andhra Pradesh', 'Andhra Pradesh'),
+    ('Bihar', 'Bihar'),
+    ('Chandigarh', 'Chandigarh'),
+    ('Chhattisgarh', 'Chhattisgarh'),
+    ('Dadra and Nagar Haveli', 'Dadra and Nagar Haveli'),
+    ('Daman and Diu', 'Daman and Diu'),
+    ('Delhi', 'Delhi'),
+    ('Goa', 'Goa'),
+    ('Gujarat', 'Gujarat'),
+    ('Haryana', 'Haryana'),
+    ('Himachal Pradesh', 'Himachal Pradesh'),
+    ('Jammu and Kashmir', 'Jammu and Kashmir'),
+    ('Jharkhand', 'Jharkhand'),
+    ('Karnataka', 'Karnataka'),
+    ('Kerala', 'Kerala'),
+    ('Lakshadweep', 'Lakshadweep'),
+    ('Madhya Pradesh', 'Madhya Pradesh'),
+    ('Maharashtra', 'Maharashtra'),
+    ('Manipur', 'Manipur'),
+    ('Meghalaya', 'Meghalaya'),
+    ('Mizoram', 'Mizoram'),
+    ('Nagaland', 'Nagaland'),
+    ('Orissa', 'Orissa'),
+    ('Pondicherry', 'Pondicherry'),
+    ('Punjab', 'Punjab'),
+    ('Rajasthan', 'Rajasthan'),
+    ('Sikkim', 'Sikkim'),
+    ('Tamil Nadu', 'Tamil Nadu'),
+    ('Tripura', 'Tripura'),
+    ('Uttaranchal', 'Uttaranchal'),
+    ('Uttar Pradesh', 'Uttar Pradesh'),
+    ('West Bengal', 'West Bengal'),
+)
+ 
+Time_Preference = (
+    ('4a.m. - 5a.m.','4a.m. - 5a.m.'),
+    ('5a.m. - 6a.m.','5a.m. - 6a.m.'),
+    ('6a.m. - 7a.m.','6a.m. - 7a.m.'),
+    ('7p.m. - 8p.m.','7p.m. - 8p.m.'),
+    ('8p.m. - 9p.m.','8p.m. - 9p.m.'),
+    ('9p.m. - 10p.m.','9p.m. - 10p.m.'),
+)
 class Owner(models.Model):
     o_user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True,on_delete= models.SET_NULL)
     o_first_name = models.CharField(max_length=200, null=True)
@@ -21,66 +81,6 @@ class Owner(models.Model):
         return self.name
 		
 class Volunteer(models.Model):
-    Day_Preference = (
-            ('Sunday', 'Sunday'),
-            ('Monday', 'Monday'),
-            ('Tuesday', 'Tuesday'),
-            ('Wednesday', 'Wednesday'),
-            ('Thursday', 'Thursday'),
-            ('Friday', 'Friday'),
-            ('Saturday', 'Saturday'),
-            ) 
-    Gender = (
-        ('MALE', 'MALE'),
-        ('FEMALE', 'FEMALE'),
-		('OTHER', 'OTHER'),
-        )
-    States = (
-        ('Andaman and Nicobar Islands', 'Andaman and Nicobar Islands'),
-        ('Arunachal Pradesh', 'Arunachal Pradesh'),
-        ('Assam', 'Assam'),
-        ('Andhra Pradesh', 'Andhra Pradesh'),
-        ('Bihar', 'Bihar'),
-        ('Chandigarh', 'Chandigarh'),
-        ('Chhattisgarh', 'Chhattisgarh'),
-        ('Dadra and Nagar Haveli', 'Dadra and Nagar Haveli'),
-        ('Daman and Diu', 'Daman and Diu'),
-        ('Delhi', 'Delhi'),
-        ('Goa', 'Goa'),
-        ('Gujarat', 'Gujarat'),
-        ('Haryana', 'Haryana'),
-        ('Himachal Pradesh', 'Himachal Pradesh'),
-        ('Jammu and Kashmir', 'Jammu and Kashmir'),
-        ('Jharkhand', 'Jharkhand'),
-        ('Karnataka', 'Karnataka'),
-        ('Kerala', 'Kerala'),
-        ('Lakshadweep', 'Lakshadweep'),
-        ('Madhya Pradesh', 'Madhya Pradesh'),
-        ('Maharashtra', 'Maharashtra'),
-        ('Manipur', 'Manipur'),
-        ('Meghalaya', 'Meghalaya'),
-        ('Mizoram', 'Mizoram'),
-        ('Nagaland', 'Nagaland'),
-        ('Orissa', 'Orissa'),
-        ('Pondicherry', 'Pondicherry'),
-        ('Punjab', 'Punjab'),
-        ('Rajasthan', 'Rajasthan'),
-        ('Sikkim', 'Sikkim'),
-        ('Tamil Nadu', 'Tamil Nadu'),
-        ('Tripura', 'Tripura'),
-        ('Uttaranchal', 'Uttaranchal'),
-        ('Uttar Pradesh', 'Uttar Pradesh'),
-        ('West Bengal', 'West Bengal'),
-    )
- 
-    Time_Preference = (
-        ('4a.m. - 5a.m.','4a.m. - 5a.m.'),
-        ('5a.m. - 6a.m.','5a.m. - 6a.m.'),
-        ('6a.m. - 7a.m.','6a.m. - 7a.m.'),
-        ('7p.m. - 8p.m.','7p.m. - 8p.m.'),
-        ('8p.m. - 9p.m.','8p.m. - 9p.m.'),
-        ('9p.m. - 10p.m.','9p.m. - 10p.m.'),
-    )
     
     v_user = models.OneToOneField(settings.AUTH_USER_MODEL,null=True, on_delete= models.SET_NULL)
     v_first_name = models.CharField(max_length=200, null=True)
